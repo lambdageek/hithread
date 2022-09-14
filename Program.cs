@@ -3,7 +3,7 @@ using System.Threading;
 using System.Runtime.Versioning;
 using System.Runtime.InteropServices.JavaScript;
 
-[assembly:TargetPlatform("browser")]
+[assembly:SupportedOSPlatform("browser")]
 
 new Thread(SecondThread).Start();
 Console.WriteLine($"Hello, Browser from the main thread {Thread.CurrentThread.ManagedThreadId}");
