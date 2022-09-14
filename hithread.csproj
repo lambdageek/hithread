@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <RuntimeIdentifier>browser-wasm</RuntimeIdentifier>
+    <WasmMainJSPath>main.js</WasmMainJSPath>
+    <OutputType>Exe</OutputType>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <!-- use the threaded build of the .NET runtime for WebAssembly -->
+    <WasmEnableThreads>true</WasmEnableThreads>
+  </PropertyGroup>
+
+  <!-- optional. Trimming and aot compilation work with threading -->
+  <PropertyGroup Condition="true">
+    <PublishTrimmed>true</PublishTrimmed>
+    <RunAOTCompilation>true</RunAOTCompilation>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <WasmExtraFilesToDeploy Include="index.html" />
+    <WasmExtraFilesToDeploy Include="main.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- provides reference assemblies that will prevent warnings about new Thread() and other threading APIs being unavailable on the browser -->
+    <PackageReference Include="Microsoft.NET.WebAssembly.Threading" Version="7.0.0-rc.2.*" />
+  </ItemGroup>
+</Project>
